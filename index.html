@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Bé học làm toán</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+      }
+
+      .vungmaytinh {
+        background-color: #0ce47f;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        width: 600px;
+      }
+
+      .manhinh {
+        background-color: #222;
+        color: #fff;
+        font-size: 2rem;
+        text-align: center;
+        padding: 20px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        overflow: hidden;
+      }
+      .phim {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        background-color: white;
+      }
+      .nutketquabieuthuc {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+        outline: none;
+        background-color: green;
+        cursor: pointer;
+        width: 5cm;
+      }
+      button {
+        font-size: 2rem;
+        padding: 20px;
+        border-radius: 10px;
+        outline: none;
+        background-color: red;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #e0e0e0;
+      }
+
+      button:active {
+        background-color: green;
+      }
+
+      .zero {
+        grid-column: span 2;
+      }
+
+      button:nth-child(4n) {
+        background-color: #f1c40f;
+        color: #fff;
+      }
+
+      button:nth-child(4n):hover {
+        background-color: #d4ac0d;
+      }
+
+      .vungkqbieuthuc {
+        background-color: blue;
+        color: #fff;
+        font-size: 2rem;
+        text-align: right;
+        padding: 20px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        overflow: hidden;
+      }
+      input {
+        width: 10cm;
+        font-size: 40px;
+      }
+    </style>
+    <script>
+      function dapanbieuthuc() {
+        try {
+          vungkqbieuthuc.innerText =
+            "Kết quả của biểu thức: " +
+            document.getElementById("obieuthuc").value +
+            "=" +
+            eval(document.getElementById("obieuthuc").value);
+        } catch (e) {
+          vungkqbieuthuc.innerText = "Nhập biểu thức không đúng cú pháp ";
+        }
+      }
+
+      function laygt(value) {
+        manhinh.innerText += value;
+      }
+
+      function xoahet() {
+        manhinh.innerText = "";
+        vungkqbieuthuc.innerText = "";
+        document.getElementById("obieuthuc").value = "";
+      }
+
+      function xoa() {
+        manhinh.innerText = manhinh.innerText.slice(0, -1);
+        vungkqbieuthuc.innerText = vungkqbieuthuc.innerText.slice(0, -1);
+      }
+
+      function tinh() {
+        try {
+          manhinh.innerText = eval(manhinh.innerText);
+        } catch (e) {
+          manhinh.innerText = "Error";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div class="vungmaytinh">
+      <div class="manhinh" id="manhinh"></div>
+      <div class="phim">
+        <button onclick="xoahet()">C</button>
+        <button onclick="xoa()">DEL</button>
+        <button onclick="laygt('%')">%</button>
+        <button onclick="laygt('+')">+</button>
+        <button onclick="laygt('7')">7</button>
+        <button onclick="laygt('8')">8</button>
+        <button onclick="laygt('9')">9</button>
+        <button onclick="laygt('-')">-</button>
+        <button onclick="laygt('4')">4</button>
+        <button onclick="laygt('5')">5</button>
+        <button onclick="laygt('6')">6</button>
+        <button onclick="laygt('*')">*</button>
+        <button onclick="laygt('1')">1</button>
+        <button onclick="laygt('2')">2</button>
+        <button onclick="laygt('3')">3</button>
+        <button onclick="laygt('/')">/</button>
+        <button onclick="laygt('0')" class="zero">0</button>
+        <button onclick="laygt('.')">.</button>
+        <button onclick="tinh()">=</button>
+      </div>
+
+      <div class="vungkqbieuthuc" id="vungkqbieuthuc"></div>
+      <input type="text" id="obieuthuc" placeholder="Nhập biểu thức" />
+      <button class="nutketquabieuthuc" onclick="dapanbieuthuc()">
+        Đáp án biểu thức
+      </button>
+    </div>
+    <div></div>
+  </body>
+</html>
